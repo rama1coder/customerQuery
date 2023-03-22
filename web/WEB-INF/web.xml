@@ -9,6 +9,10 @@
             30
         </session-timeout>
     </session-config>
+    <context-param>  
+    <param-name>Genius</param-name>  
+    <param-value>Ramkrishna</param-value>  
+  </context-param>
     <servlet>  
 <servlet-name>Demoservlet</servlet-name>  
 <servlet-class>DemoServlet</servlet-class>  
@@ -21,4 +25,5 @@
 <servlet-name>Demoservlet</servlet-name>  
 <url-pattern>/servlet1</url-pattern>  
 </servlet-mapping>
+
 </web-app>

@@ -6,6 +6,7 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,9 +33,14 @@ public class DemoServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           ServletConfig svc= getServletConfig();
-           String sts=svc.getInitParameter("driver");
-           out.print("<H1>"+sts+"<H1>");
+//           ServletConfig svc= getServletConfig();
+//           String sts=svc.getInitParameter("driver");
+//           out.print("<H1>"+sts+"<H1>");
+//           ServletContext app=getServletContext();
+//           String genius=(String) app.getAttribute("Genius");
+//           out.print("<h1>hello "+genius+"</h1>");
+//           request.getRequestDispatcher(sts
+                   request.getRequestDispatcher("callerpage.jsp").forward(request, response);
         }
     }
 

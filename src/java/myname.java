@@ -5,9 +5,9 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ramkrishna
  */
-@WebServlet(urlPatterns = {"/homeservlet"})
-public class homeservlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/myname"})
+public class myname extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,22 +31,18 @@ public class homeservlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ServletContext cn=getServletContext();
-        cn.setAttribute("Genius", "Ramkrishna");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>GeniusFinder</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet homeservlet at " + request.getContextPath() + "</h1>");
-              out.println("this is find setAttribute an GetAttribute status");
-              out.println("<button><a href='servlet1'>Hellowww</a></button>");
-            out.println("</body>");
-            out.println("</html>");
-            
+         Cookie ck[]=request.getCookies();
+         out.print(ck.length);
+         if(ck[1]!=null)
+         {
+             String name=(String)ck[1].getValue();
+             out.print("<h1>see i remebered your name</h1>"+name);
+         }
+         else
+         {
+             out.print("<h1>who the hell are you??</h1>");
+         }
         }
     }
 
